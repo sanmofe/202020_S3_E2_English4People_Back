@@ -2,9 +2,10 @@ pipeline {
    agent any 
    environment {
       GIT_REPO = '202020_S3_E2_English4People_Back'
-      GIT_CREDENTIAL_ID = '3bc40c8d-bd36-4ef5-9012-1dd9b93f85b0'
       SONARQUBE_URL = 'http://172.24.101.209:8082'
       MAVEN_CONFIG = '/home/estudiante/DATA/maven'
+      GIT_CREDENTIAL_ID = '692cb316-0794-4522-9cf0-83c2618a09e5'
+      ARCHID_TOKEN = credentials('041703df-dd96-47c3-97b1-b7fbf12069d5')
    }
    stages {
       stage('Checkout') { 
