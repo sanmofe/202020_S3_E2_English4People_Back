@@ -81,6 +81,19 @@ pipeline {
             }
          }
       }
+      stage('ARCC') {
+         // Run arcc analysis
+         steps {
+            script {
+               docker.image('arcc-tools-isis2603:latest').inside('-e ARCHID_TOKEN=${ARCHID_TOKEN}') {
+                  sh '''
+                     java -version
+                     java -cp /eclipse/plugins/org.eclipse.equinox.launcher_1.5.700.v20200207-2156.jar org.eclipse.equinox.launcher.Main -application co.edu.uniandes.archtoring.archtoring --full
+                  '''
+               }
+            }
+         }
+      }
    }
    post { 
       always { 
