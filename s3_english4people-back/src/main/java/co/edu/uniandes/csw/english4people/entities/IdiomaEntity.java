@@ -5,16 +5,17 @@
  */
 package co.edu.uniandes.csw.english4people.entities;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 
 /**
  *
- * @author estudiante
+ * @author Juan Diego Gonzalez
  */
 @Entity
-public class IdiomaEntity extends BaseEntity{
+public class IdiomaEntity extends BaseEntity implements Serializable{
 
-        private boolean espanol;
+    private boolean espanol;
     
     private boolean ingles;
     
