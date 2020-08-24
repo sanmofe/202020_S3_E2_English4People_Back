@@ -68,7 +68,7 @@ pipeline {
                   sh '''
                      mkdir -p ./reports/
                      datetime=$(date +'%Y-%m-%d_%H%M%S')
-                     gitinspector --file-types="java" --format=html --AxU -w -T > ./reports/index.html
+                     gitinspector --file-types="java" --format=html --AxU -w -T -x author:Bocanegra > ./reports/index.html
                   '''
                }
             }
