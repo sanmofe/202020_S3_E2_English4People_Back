@@ -51,6 +51,7 @@ public class MaterialDeClasePersistanceTest {
         Assert.assertEquals(material.getEnlaceMaterial(), entity.getEnlaceMaterial());
     }
     
+    
     private static void addAsManifestResource(String metainFpersistancexml, String persistancexml) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
