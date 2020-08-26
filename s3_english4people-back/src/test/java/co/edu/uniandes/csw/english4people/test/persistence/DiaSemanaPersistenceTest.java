@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.english4people.test.persistence;
 
-import co.edu.uniandes.csw.english4people.entities.IdiomaEntity;
-import co.edu.uniandes.csw.english4people.persistence.IdiomaPersistence;
+import co.edu.uniandes.csw.english4people.entities.DiaSemanaEntity;
+import co.edu.uniandes.csw.english4people.persistence.DiaSemanaPersistence;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,21 +25,21 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author Juan Diego Gonzalez Gomez
  */
 @RunWith(Arquillian.class)
-public class IdiomaPersistenceTest
+public class DiaSemanaPersistenceTest
 {
     @Deployment
     public static JavaArchive createDeployment()
     {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(IdiomaEntity.class.getPackage())
-                .addPackage(IdiomaPersistence.class.getPackage())
+                .addPackage(DiaSemanaEntity.class.getPackage())
+                .addPackage(DiaSemanaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml",
                         "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
     @Inject
-    private IdiomaPersistence ip;
+    private DiaSemanaPersistence ip;
     
     @PersistenceContext
     private EntityManager em;
@@ -48,21 +48,19 @@ public class IdiomaPersistenceTest
     public void createTest()
     {
         PodamFactory factory = new PodamFactoryImpl();
-        IdiomaEntity idioma = factory.manufacturePojo(IdiomaEntity.class);
+        DiaSemanaEntity diaSemana = factory.manufacturePojo(DiaSemanaEntity.class);
         
-        IdiomaEntity result = ip.create(idioma);
+        DiaSemanaEntity result = ip.create(diaSemana);
         Assert.assertNotNull(result);
         
-        IdiomaEntity entity = em.find(IdiomaEntity.class, result.getId());
+        DiaSemanaEntity entity = em.find(DiaSemanaEntity.class, result.getId());
         
-        Assert.assertEquals(idioma.getEspanol(), entity.getEspanol());
-        Assert.assertEquals(idioma.getIngles(), entity.getIngles());
-        Assert.assertEquals(idioma.getFrances(), entity.getFrances());
-        Assert.assertEquals(idioma.getItaliano(), entity.getItaliano());
-        Assert.assertEquals(idioma.getPortugues(), entity.getPortugues());
-        Assert.assertEquals(idioma.getAleman(), entity.getAleman());
-        Assert.assertEquals(idioma.getJapones(), entity.getJapones());
-        Assert.assertEquals(idioma.getCoreano(), entity.getCoreano());
-        Assert.assertEquals(idioma.getMandarin(), entity.getMandarin());
+        Assert.assertEquals(diaSemana.getLunes(), entity.getLunes());
+        Assert.assertEquals(diaSemana.getMartes(), entity.getMartes());
+        Assert.assertEquals(diaSemana.getMiercoles(), entity.getMiercoles());
+        Assert.assertEquals(diaSemana.getJueves(), entity.getJueves());
+        Assert.assertEquals(diaSemana.getViernes(), entity.getViernes());
+        Assert.assertEquals(diaSemana.getSabado(), entity.getSabado());
+        Assert.assertEquals(diaSemana.getDomingo(), entity.getDomingo());
     }
 }
