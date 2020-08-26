@@ -10,28 +10,28 @@ import javax.persistence.Entity;
 
 /**
  *
- * @author Juan Diego Gonzalez
+ * @author Juan Diego Gonzalez Gomez
  */
 @Entity
 public class IdiomaEntity extends BaseEntity implements Serializable{
 
-    private boolean espanol;
+    private Boolean espanol;
     
-    private boolean ingles;
+    private Boolean ingles;
     
-    private boolean frances;
+    private Boolean frances;
     
-    private boolean italiano;
+    private Boolean italiano;
     
-    private boolean portugues;
+    private Boolean portugues;
     
-    private boolean aleman;
+    private Boolean aleman;
     
-    private boolean japones;
+    private Boolean japones;
     
-    private boolean coreano;
+    private Boolean coreano;
     
-    private boolean mandarin;
+    private Boolean mandarin;
     
     /**
      * @return the espanol
