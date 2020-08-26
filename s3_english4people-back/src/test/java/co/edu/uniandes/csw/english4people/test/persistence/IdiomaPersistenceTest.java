@@ -22,7 +22,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author Juan Diego Gonzalez
+ * @author Juan Diego Gonzalez Gomez
  */
 @RunWith(Arquillian.class)
 public class IdiomaPersistenceTest {

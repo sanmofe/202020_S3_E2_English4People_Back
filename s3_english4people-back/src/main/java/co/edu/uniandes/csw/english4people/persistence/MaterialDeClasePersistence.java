@@ -18,7 +18,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class MaterialDeClasePersistence {
     
-    @PersistenceContext (unitName = "UniversidadPU")
+    @PersistenceContext (unitName = "english4peoplePU")
     protected EntityManager em;
      public MaterialDeClaseEntity create(MaterialDeClaseEntity material)
     {

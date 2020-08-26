@@ -12,8 +12,8 @@ import javax.persistence.Entity;
  * @author Juan Diego Castellanos Bonilla
  */
 @Entity
-public class MaterialDeClaseEntity extends BaseEntity implements Serializable {
-    
+public class MaterialDeClaseEntity extends BaseEntity implements Serializable
+{
     private String enlaceMaterial;
 
     /**
@@ -29,5 +29,4 @@ public class MaterialDeClaseEntity extends BaseEntity implements Serializable {
     public void setEnlaceMaterial(String enlaceMaterial) {
         this.enlaceMaterial = enlaceMaterial;
     }
-
 }

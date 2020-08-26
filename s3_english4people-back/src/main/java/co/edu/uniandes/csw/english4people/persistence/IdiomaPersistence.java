@@ -12,12 +12,12 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Juan Diego Gonzalez
+ * @author Juan Diego Gonzalez Gomez
  */
 @Stateless
 public class IdiomaPersistence {
     
-    @PersistenceContext (unitName = "dispositivosPU")
+    @PersistenceContext (unitName = "english4peoplePU")
     protected EntityManager em;
     
     public IdiomaEntity create(IdiomaEntity idioma)

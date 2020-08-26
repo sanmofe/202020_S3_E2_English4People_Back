@@ -49,11 +49,8 @@ public class ActividadPersistanceTest {
         
         ActividadEntity entity = em.find(ActividadEntity.class, result.getId());
         
+        Assert.assertEquals(actividad.getFecha(), entity.getFecha());
         Assert.assertEquals(actividad.getTipo(), entity.getTipo());
-    }
-    private static void addAsManifestResource(String metainFpersistancexml, String persistancexml) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
+        Assert.assertEquals(actividad.getDescripcion(), entity.getDescripcion());
+    }    
 }

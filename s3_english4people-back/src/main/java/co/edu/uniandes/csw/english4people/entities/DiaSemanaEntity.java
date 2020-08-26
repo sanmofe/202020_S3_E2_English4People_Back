@@ -15,116 +15,115 @@ import javax.persistence.Entity;
 @Entity
 public class DiaSemanaEntity extends BaseEntity implements Serializable
 {
-    private boolean lunes;
+    private Boolean lunes;
     
-    private boolean martes;
+    private Boolean martes;
     
-    private boolean miercoles;
+    private Boolean miercoles;
     
-    private boolean jueves;
+    private Boolean jueves;
     
-    private boolean viernes;
+    private Boolean viernes;
     
-    private boolean sabado;
+    private Boolean sabado;
     
-    private boolean domingo;
+    private Boolean domingo;
     
     /**
      * @return the lunes
      */
-    public boolean getLunes() {
+    public Boolean getLunes() {
         return lunes;
     }
 
     /**
      * @param lunes the lunes to set
      */
-    public void setLunes(boolean lunes) {
+    public void setLunes(Boolean lunes) {
         this.lunes = lunes;
     }
 
     /**
      * @return the martes
      */
-    public boolean getMartes() {
+    public Boolean getMartes() {
         return martes;
     }
 
     /**
      * @param martes the martes to set
      */
-    public void setMartes(boolean martes) {
+    public void setMartes(Boolean martes) {
         this.martes = martes;
     }
 
     /**
      * @return the miercoles
      */
-    public boolean getMiercoles() {
+    public Boolean getMiercoles() {
         return miercoles;
     }
 
     /**
      * @param miercoles the miercoles to set
      */
-    public void setMiercoles(boolean miercoles) {
+    public void setMiercoles(Boolean miercoles) {
         this.miercoles = miercoles;
     }
 
     /**
      * @return the jueves
      */
-    public boolean getJueves() {
+    public Boolean getJueves() {
         return jueves;
     }
 
     /**
      * @param jueves the jueves to set
      */
-    public void setJueves(boolean jueves) {
+    public void setJueves(Boolean jueves) {
         this.jueves = jueves;
     }
 
     /**
      * @return the viernes
      */
-    public boolean getViernes() {
+    public Boolean getViernes() {
         return viernes;
     }
 
     /**
      * @param viernes the viernes to set
      */
-    public void setViernes(boolean viernes) {
+    public void setViernes(Boolean viernes) {
         this.viernes = viernes;
     }
 
     /**
      * @return the sabado
      */
-    public boolean getSabado() {
+    public Boolean getSabado() {
         return sabado;
     }
 
     /**
      * @param sabado the sabado to set
      */
-    public void setSabado(boolean sabado) {
+    public void setSabado(Boolean sabado) {
         this.sabado = sabado;
     }
 
     /**
      * @return the domingo
      */
-    public boolean getDomingo() {
+    public Boolean getDomingo() {
         return domingo;
     }
 
     /**
      * @param domingo the domingo to set
      */
-    public void setDomingo(boolean domingo) {
+    public void setDomingo(Boolean domingo) {
         this.domingo = domingo;
-    }
-    
+    }   
 }

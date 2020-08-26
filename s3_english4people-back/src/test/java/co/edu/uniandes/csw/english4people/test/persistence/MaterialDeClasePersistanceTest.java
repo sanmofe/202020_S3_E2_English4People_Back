@@ -33,7 +33,7 @@ public class MaterialDeClasePersistanceTest {
     return ShrinkWrap.create(JavaArchive.class).addPackage(MaterialDeClaseEntity.class.getPackage()).addPackage(MaterialDeClasePersistence.class.getPackage()).addAsManifestResource("META-INF/persistence.xml","persistence.xml").addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
-     @Inject
+    @Inject
     MaterialDeClasePersistence mdc;
     
     @PersistenceContext
@@ -49,11 +49,5 @@ public class MaterialDeClasePersistanceTest {
         MaterialDeClaseEntity entity = em.find(MaterialDeClaseEntity.class, result.getId());
         
         Assert.assertEquals(material.getEnlaceMaterial(), entity.getEnlaceMaterial());
-    }
-    
-    
-    private static void addAsManifestResource(String metainFpersistancexml, String persistancexml) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    }    
 }

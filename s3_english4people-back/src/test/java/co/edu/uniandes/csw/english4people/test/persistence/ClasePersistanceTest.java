@@ -49,10 +49,7 @@ public class ClasePersistanceTest {
         
         ClaseEntity entity = em.find(ClaseEntity.class, result.getId());
         
-        Assert.assertEquals(clase.getClass(), entity.getClass());
+        Assert.assertEquals(clase.getFecha(), entity.getFecha());
+        Assert.assertEquals(clase.getTipoClase(), entity.getTipoClase());
     }
-    private static void addAsManifestResource(String metainFpersistancexml, String persistancexml) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

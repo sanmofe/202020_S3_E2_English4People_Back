@@ -13,8 +13,8 @@ import javax.persistence.Entity;
  * @author Juan Diego Gonzalez Gomez
  */
 @Entity
-public class IdiomaEntity extends BaseEntity implements Serializable{
-
+public class IdiomaEntity extends BaseEntity implements Serializable
+{
     private Boolean espanol;
     
     private Boolean ingles;
@@ -36,126 +36,126 @@ public class IdiomaEntity extends BaseEntity implements Serializable{
     /**
      * @return the espanol
      */
-    public boolean getEspanol() {
+    public Boolean getEspanol() {
         return espanol;
     }
 
     /**
      * @param espanol the espanol to set
      */
-    public void setEspanol(boolean espanol) {
+    public void setEspanol(Boolean espanol) {
         this.espanol = espanol;
     }
 
     /**
      * @return the ingles
      */
-    public boolean getIngles() {
+    public Boolean getIngles() {
         return ingles;
     }
 
     /**
      * @param ingles the ingles to set
      */
-    public void setIngles(boolean ingles) {
+    public void setIngles(Boolean ingles) {
         this.ingles = ingles;
     }
 
     /**
      * @return the frances
      */
-    public boolean getFrances() {
+    public Boolean getFrances() {
         return frances;
     }
 
     /**
      * @param frances the frances to set
      */
-    public void setFrances(boolean frances) {
+    public void setFrances(Boolean frances) {
         this.frances = frances;
     }
 
     /**
      * @return the italiano
      */
-    public boolean getItaliano() {
+    public Boolean getItaliano() {
         return italiano;
     }
 
     /**
      * @param italiano the italiano to set
      */
-    public void setItaliano(boolean italiano) {
+    public void setItaliano(Boolean italiano) {
         this.italiano = italiano;
     }
 
     /**
      * @return the portugues
      */
-    public boolean getPortugues() {
+    public Boolean getPortugues() {
         return portugues;
     }
 
     /**
      * @param portugues the portugues to set
      */
-    public void setPortugues(boolean portugues) {
+    public void setPortugues(Boolean portugues) {
         this.portugues = portugues;
     }
 
     /**
      * @return the aleman
      */
-    public boolean getAleman() {
+    public Boolean getAleman() {
         return aleman;
     }
 
     /**
      * @param aleman the aleman to set
      */
-    public void setAleman(boolean aleman) {
+    public void setAleman(Boolean aleman) {
         this.aleman = aleman;
     }
 
     /**
      * @return the japones
      */
-    public boolean getJapones() {
+    public Boolean getJapones() {
         return japones;
     }
 
     /**
      * @param japones the japones to set
      */
-    public void setJapones(boolean japones) {
+    public void setJapones(Boolean japones) {
         this.japones = japones;
     }
 
     /**
      * @return the coreano
      */
-    public boolean getCoreano() {
+    public Boolean getCoreano() {
         return coreano;
     }
 
     /**
      * @param coreano the coreano to set
      */
-    public void setCoreano(boolean coreano) {
+    public void setCoreano(Boolean coreano) {
         this.coreano = coreano;
     }
 
     /**
      * @return the mandarin
      */
-    public boolean getMandarin() {
+    public Boolean getMandarin() {
         return mandarin;
     }
 
     /**
      * @param mandarin the mandarin to set
      */
-    public void setMandarin(boolean mandarin) {
+    public void setMandarin(Boolean mandarin) {
         this.mandarin = mandarin;
     }
 }
