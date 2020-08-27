@@ -16,7 +16,7 @@ import java.io.Serializable;
 public class EstudianteEntity extends BaseEntity implements Serializable {
 
     private String nombre;
-    private int identificacion;
+    private Integer identificacion;
     private String login;
     private String correo;
     private String contrasena;
@@ -31,7 +31,7 @@ public class EstudianteEntity extends BaseEntity implements Serializable {
     /**
      * @return la identificacion
      */
-    public int getIdentificacion()
+    public Integer getIdentificacion()
     {
     return identificacion;
     }
@@ -67,7 +67,7 @@ public class EstudianteEntity extends BaseEntity implements Serializable {
     /**
      * @param id
      */
-    public void setIdentificacion(int id)
+    public void setIdentificacion(Integer id)
     {
     this.identificacion = id;
     }

@@ -17,7 +17,7 @@ public class ProfesoresEntity extends BaseEntity implements Serializable {
     
     private String nombre;
     
-    private int identificacion;
+    private Integer identificacion;
     
     private String login; 
     
@@ -47,14 +47,14 @@ public class ProfesoresEntity extends BaseEntity implements Serializable {
     /**
      * @return la identificacion
      */
-    public int getIdentificacion(){
+    public Integer getIdentificacion(){
         return identificacion;
     }
     
     /**
      * @param identificacion the identificacion to set
      */
-    public void setIdentificacion(int identificacion){
+    public void setIdentificacion(Integer identificacion){
         this.identificacion = identificacion;
     }
     

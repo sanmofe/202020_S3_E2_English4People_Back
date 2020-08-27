@@ -4,6 +4,8 @@ package co.edu.uniandes.csw.english4people.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+
 @Entity
 public class CalificacionEntity extends BaseEntity implements Serializable{
     
@@ -13,6 +15,7 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     
     private String nombreEstudiante;
     
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
 
     public Double getCalificacionNumerica() {

@@ -3,11 +3,13 @@ package co.edu.uniandes.csw.english4people.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.Temporal;
 
-
+@Entity
 public class RespuestaEntity extends BaseEntity implements Serializable {
     
-        
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
     
     private String comentario;
