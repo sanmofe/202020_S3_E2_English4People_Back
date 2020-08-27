@@ -89,14 +89,14 @@ public class ProfesoresEntity extends BaseEntity implements Serializable {
     /**
      * @return la contraseña
      */
-    public String getConstrasena(){
+    public String getContrasena(){
         return contrasena;
     }
     
     /**
      * @param contrasena the contrasena to set
      */
-    public void setConstrasena(String contrasena){
+    public void setContrasena(String contrasena){
         this.contrasena = contrasena;
     }
     

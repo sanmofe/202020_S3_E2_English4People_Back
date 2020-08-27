@@ -52,7 +52,7 @@ public class ProfesoresPersistanceTest {
         Assert.assertEquals(material.getIdentificacion(), entity.getIdentificacion());
         Assert.assertEquals(material.getLogin(), entity.getLogin());
         Assert.assertEquals(material.getCorreo(), entity.getCorreo());
-        Assert.assertEquals(material.getConstrasena(), entity.getConstrasena());
+        Assert.assertEquals(material.getContrasena(), entity.getContrasena());
         Assert.assertEquals(material.getInformacionAcademica(), entity.getInformacionAcademica());
         Assert.assertEquals(material.getCanalYoutube(), entity.getCanalYoutube());
         

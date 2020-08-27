@@ -10,7 +10,10 @@
     <packaging>pom</packaging>
     <name>s3_english4people</name>
  
-    <modules></modules>
+    <modules>
+        <module>s3_english4people-back</module>
+        <module>s3_english4people-api</module>
+    </modules>
     
     <repositories>
         <repository>
