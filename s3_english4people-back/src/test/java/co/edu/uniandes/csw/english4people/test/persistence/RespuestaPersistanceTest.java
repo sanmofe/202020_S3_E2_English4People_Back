@@ -35,7 +35,6 @@ public class RespuestaPersistanceTest {
         Assert.assertNotNull(result);
         RespuestaEntity entity = em.find(RespuestaEntity.class, result.getId());
         
-        Assert.assertEquals(respuesta.getFecha(), entity.getFecha());
         Assert.assertEquals(respuesta.getComentario(), entity.getComentario());
     }    
 }
