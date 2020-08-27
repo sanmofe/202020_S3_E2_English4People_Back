@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 @Entity
 public class ClaseEntity extends BaseEntity implements Serializable {
     
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
     
     private String tipoClase;

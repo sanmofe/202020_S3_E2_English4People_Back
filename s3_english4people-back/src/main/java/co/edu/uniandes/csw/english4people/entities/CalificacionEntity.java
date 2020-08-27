@@ -16,8 +16,9 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     
     private String nombreEstudiante;
     
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
+    
 
     public Double getCalificacionNumerica() {
         return calificacionNumerica;
