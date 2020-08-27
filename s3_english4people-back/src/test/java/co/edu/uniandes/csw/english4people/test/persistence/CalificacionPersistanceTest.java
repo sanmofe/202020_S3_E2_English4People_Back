@@ -40,8 +40,6 @@ public class CalificacionPersistanceTest {
         Assert.assertEquals(calificacion.getCalificacionNumerica(), entity.getCalificacionNumerica());
         Assert.assertEquals(calificacion.getComentario(), entity.getComentario());
         Assert.assertEquals(calificacion.getNombreEstudiante(), entity.getNombreEstudiante());
-        Assert.assertEquals(calificacion.getFecha(), entity.getFecha());
-        
-        
+               
     }    
 }

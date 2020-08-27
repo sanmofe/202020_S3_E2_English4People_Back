@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class CalificacionEntity extends BaseEntity implements Serializable{
@@ -15,7 +16,7 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     
     private String nombreEstudiante;
     
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     private Date fecha;
 
     public Double getCalificacionNumerica() {

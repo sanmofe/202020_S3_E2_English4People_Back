@@ -49,7 +49,6 @@ public class ClasePersistanceTest {
         
         ClaseEntity entity = em.find(ClaseEntity.class, result.getId());
         
-        Assert.assertEquals(clase.getFecha(), entity.getFecha());
         Assert.assertEquals(clase.getTipoClase(), entity.getTipoClase());
     }
 }
