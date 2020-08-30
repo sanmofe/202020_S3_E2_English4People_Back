@@ -1,5 +1,5 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Sun Aug 30 02:58:47 UTC 2020
+#Sun Aug 30 16:06:33 UTC 2020
 http\://157.253.238.75\:8081/content/repositories/releases/.error=
 http\://157.253.238.75\:8081/content/repositories/releases/.lastUpdated=1598756322292
-https\://repo.maven.apache.org/maven2/.lastUpdated=1598756327413
+https\://repo.maven.apache.org/maven2/.lastUpdated=1598803593958
