@@ -32,7 +32,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 public class DiaSemanaPersistenceTest
 {
     @Inject
-    private DiaSemanaPersistence ip;
+    private DiaSemanaPersistence dsp;
     
     @PersistenceContext
     private EntityManager em;    
@@ -93,7 +93,7 @@ public class DiaSemanaPersistenceTest
         PodamFactory factory = new PodamFactoryImpl();
         DiaSemanaEntity diaSemana = factory.manufacturePojo(DiaSemanaEntity.class);
         
-        DiaSemanaEntity result = ip.create(diaSemana);
+        DiaSemanaEntity result = dsp.create(diaSemana);
         Assert.assertNotNull(result);
         
         DiaSemanaEntity entity = em.find(DiaSemanaEntity.class, result.getId());
@@ -109,7 +109,7 @@ public class DiaSemanaPersistenceTest
     
     @Test
     public void getDiasSemanaTest() {
-        List<DiaSemanaEntity> list = ip.findAll();
+        List<DiaSemanaEntity> list = dsp.findAll();
         Assert.assertEquals(data.size(), list.size());
         for (DiaSemanaEntity ent : list) {
             boolean found = false;
@@ -125,7 +125,7 @@ public class DiaSemanaPersistenceTest
     @Test
     public void getDiaSemanaTest() {
         DiaSemanaEntity entity = data.get(0);
-        DiaSemanaEntity newEntity = ip.find(entity.getId());
+        DiaSemanaEntity newEntity = dsp.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getLunes(), newEntity.getLunes());
         Assert.assertEquals(entity.getMartes(), newEntity.getMartes());
@@ -144,7 +144,7 @@ public class DiaSemanaPersistenceTest
 
         newEntity.setId(entity.getId());
 
-        ip.update(newEntity);
+        dsp.update(newEntity);
 
         DiaSemanaEntity resp = em.find(DiaSemanaEntity.class, entity.getId());
 
@@ -160,7 +160,7 @@ public class DiaSemanaPersistenceTest
     @Test
     public void deleteDiaSemanaTest() {
         DiaSemanaEntity entity = data.get(0);
-        ip.delete(entity.getId());
+        dsp.delete(entity.getId());
         DiaSemanaEntity deleted = em.find(DiaSemanaEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
