@@ -44,18 +44,20 @@ public class ContratoPersistenceTest {
     }
     
     //"Inicializa" e inyecta lo que se quiere probar (clase persistance)
-    //New clase
+    //New clase de persistencia
     @Inject
     ContratoPersistence cp;
     
-    //El elemento principal de JPA para acceder a la base de datos
+    //PersistenceContext -> conjunto de entidades tal que para cada persistencia hay una entidad unica. Las entidades son manegadas en el contexto de persistencia.
     @PersistenceContext
+    //El elemento principal de JPA para acceder a la base de datos
     private EntityManager em;
     
     //"Inicializa" e inyecta UserTransaccion que es una interface que permite a la aplicacion manejar transacciones
     @Inject
     UserTransaction utx;
     
+    //Lista de datos
     private List<ContratoEntity> data = new ArrayList<ContratoEntity>();
     
      /**

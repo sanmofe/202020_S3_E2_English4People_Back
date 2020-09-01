@@ -22,7 +22,9 @@ import javax.persistence.Query;
 @Stateless
 public class ContratoPersistence {
     
+    //PersistenceContext -> conjunto de entidades tal que para cada persistencia hay una entidad unica. Las entidades son manegadas en el contexto de persistencia.
     @PersistenceContext (unitName = "english4peoplePU")
+    //EntityManager -> el elemento principal de JPA para acceder a la base de datos
     protected EntityManager em;
     
      public ContratoEntity create(ContratoEntity contrato)
@@ -46,7 +48,7 @@ public class ContratoPersistence {
     }
     
      public void delete(Long contratoId) {
-        ContratoEntity bookEntity = em.find(ContratoEntity.class, contratoId);
-        em.remove(bookEntity);
+        ContratoEntity contrato = em.find(ContratoEntity.class, contratoId);
+        em.remove(contrato);
     }
 }
