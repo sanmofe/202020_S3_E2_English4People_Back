@@ -139,7 +139,7 @@ public class CertificadoPersistanceTest {
     }
     
     @Test
-    public void deleteProfesoresTest() {
+    public void deleteCertificadoTest() {
         CertificadoEntity entity = data.get(0);
         cp.delete(entity.getId());
         CertificadoEntity deleted = em.find(CertificadoEntity.class, entity.getId());
