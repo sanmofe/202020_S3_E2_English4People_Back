@@ -7,14 +7,18 @@ package co.edu.uniandes.csw.english4people.test.persistence;
 
 import co.edu.uniandes.csw.english4people.entities.DiaSemanaEntity;
 import co.edu.uniandes.csw.english4people.persistence.DiaSemanaPersistence;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
@@ -27,6 +31,17 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class DiaSemanaPersistenceTest
 {
+    @Inject
+    private DiaSemanaPersistence dsp;
+    
+    @PersistenceContext
+    private EntityManager em;    
+    
+    @Inject
+    UserTransaction utx;
+
+    private List<DiaSemanaEntity> data = new ArrayList<DiaSemanaEntity>();
+    
     @Deployment
     public static JavaArchive createDeployment()
     {
@@ -38,11 +53,39 @@ public class DiaSemanaPersistenceTest
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     
-    @Inject
-    private DiaSemanaPersistence ip;
+    @Before
+    public void configTest() {
+        try {
+            utx.begin();
+            em.joinTransaction();
+            clearData();
+            insertData();
+            utx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
     
-    @PersistenceContext
-    private EntityManager em;
+    private void clearData() {
+        em.createQuery("delete from DiaSemanaEntity").executeUpdate();
+    }
+
+    private void insertData() {
+        PodamFactory factory = new PodamFactoryImpl();
+        for (int i = 0; i < 3; i++) {
+
+            DiaSemanaEntity entity = factory.manufacturePojo(DiaSemanaEntity.class);
+
+            em.persist(entity);
+
+            data.add(entity);
+        }
+    }
     
     @Test
     public void createTest()
@@ -50,7 +93,7 @@ public class DiaSemanaPersistenceTest
         PodamFactory factory = new PodamFactoryImpl();
         DiaSemanaEntity diaSemana = factory.manufacturePojo(DiaSemanaEntity.class);
         
-        DiaSemanaEntity result = ip.create(diaSemana);
+        DiaSemanaEntity result = dsp.create(diaSemana);
         Assert.assertNotNull(result);
         
         DiaSemanaEntity entity = em.find(DiaSemanaEntity.class, result.getId());
@@ -62,5 +105,63 @@ public class DiaSemanaPersistenceTest
         Assert.assertEquals(diaSemana.getViernes(), entity.getViernes());
         Assert.assertEquals(diaSemana.getSabado(), entity.getSabado());
         Assert.assertEquals(diaSemana.getDomingo(), entity.getDomingo());
+    }
+    
+    @Test
+    public void getDiasSemanaTest() {
+        List<DiaSemanaEntity> list = dsp.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (DiaSemanaEntity ent : list) {
+            boolean found = false;
+            for (DiaSemanaEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+    
+    @Test
+    public void getDiaSemanaTest() {
+        DiaSemanaEntity entity = data.get(0);
+        DiaSemanaEntity newEntity = dsp.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getLunes(), newEntity.getLunes());
+        Assert.assertEquals(entity.getMartes(), newEntity.getMartes());
+        Assert.assertEquals(entity.getMiercoles(), newEntity.getMiercoles());
+        Assert.assertEquals(entity.getJueves(), newEntity.getJueves());
+        Assert.assertEquals(entity.getViernes(), newEntity.getViernes());
+        Assert.assertEquals(entity.getSabado(), newEntity.getSabado());
+        Assert.assertEquals(entity.getDomingo(), newEntity.getDomingo());
+    }
+    
+    @Test
+    public void updateDiaSemanaTest() {
+        DiaSemanaEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        DiaSemanaEntity newEntity = factory.manufacturePojo(DiaSemanaEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        dsp.update(newEntity);
+
+        DiaSemanaEntity resp = em.find(DiaSemanaEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getLunes(), resp.getLunes());
+        Assert.assertEquals(newEntity.getMartes(), resp.getMartes());
+        Assert.assertEquals(newEntity.getMiercoles(), resp.getMiercoles());
+        Assert.assertEquals(newEntity.getJueves(), resp.getJueves());
+        Assert.assertEquals(newEntity.getViernes(), resp.getViernes());
+        Assert.assertEquals(newEntity.getSabado(), resp.getSabado());
+        Assert.assertEquals(newEntity.getDomingo(), resp.getDomingo());
+    }
+    
+    @Test
+    public void deleteDiaSemanaTest() {
+        DiaSemanaEntity entity = data.get(0);
+        dsp.delete(entity.getId());
+        DiaSemanaEntity deleted = em.find(DiaSemanaEntity.class, entity.getId());
+        Assert.assertNull(deleted);
     }
 }
