@@ -6,14 +6,19 @@
 package co.edu.uniandes.csw.english4people.persistence;
 
 import co.edu.uniandes.csw.english4people.entities.ContratoEntity;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
  * @author Sara Plazas
  */
+
+//Stateless porque no me interesa  guardan información del cliente específico que están atendiendo
+//                 no tiene la necesidad de guardar una relación entre un usuario y un bean particular
 @Stateless
 public class ContratoPersistence {
     
@@ -26,5 +31,22 @@ public class ContratoPersistence {
         
         return contrato;
     }
+     
+     public List<ContratoEntity> findAll() {
+        Query q = em.createQuery("select u from ContratoEntity u");
+        return q.getResultList();
+    }
+     
+     public ContratoEntity find(Long contratoId) {
+        return em.find(ContratoEntity.class, contratoId);
+    }
+     
+     public ContratoEntity update(ContratoEntity contrato) {
+        return em.merge(contrato);
+    }
     
+     public void delete(Long contratoId) {
+        ContratoEntity bookEntity = em.find(ContratoEntity.class, contratoId);
+        em.remove(bookEntity);
+    }
 }
