@@ -31,8 +31,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 @RunWith(Arquillian.class)
 public class ProfesoresPersistanceTest {
-    
-    
+
     @Inject
     UserTransaction utx;
 
@@ -83,7 +82,6 @@ public class ProfesoresPersistanceTest {
             data.add(entity);
         }
     }    
-    
     
     @Test
     public void createTest()
