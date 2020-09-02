@@ -8,14 +8,18 @@ package co.edu.uniandes.csw.english4people.test.persistence;
 
 import co.edu.uniandes.csw.english4people.entities.ActividadEntity;
 import co.edu.uniandes.csw.english4people.persistence.ActividadPersistence;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
@@ -33,10 +37,33 @@ public class ActividadPersistanceTest {
     }
     
     @Inject
+    UserTransaction utx;
+    
+    private List<ActividadEntity> data =  new ArrayList<ActividadEntity>();
+    
+    @Inject
     ActividadPersistence ac;
     
     @PersistenceContext
     private EntityManager em;
+    
+    @Before
+    public void configTest() {
+        try {
+            utx.begin();
+            em.joinTransaction();
+            clearData();
+            insertData();
+            utx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
     
     @Test
     public void createTest()
@@ -53,4 +80,69 @@ public class ActividadPersistanceTest {
         Assert.assertEquals(actividad.getTipo(), entity.getTipo());
         Assert.assertEquals(actividad.getDescripcion(), entity.getDescripcion());
     }    
+    
+     private void clearData() {
+        em.createQuery("delete from CalificacionEntity").executeUpdate();
+    }
+     
+     private void insertData() {
+        PodamFactory factory = new PodamFactoryImpl();
+        for (int i = 0; i < 3; i++) {
+            
+            ActividadEntity entity = factory.manufacturePojo(ActividadEntity.class);
+            em.persist(entity);
+
+            data.add(entity);
+        }
+    }
+     
+    @Test
+    public void getActividadesTest() {
+        List<ActividadEntity> list = ac.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (ActividadEntity ent : list) {
+            boolean found = false;
+            for (ActividadEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
+    
+    @Test
+    public void getActividadTest() {
+        ActividadEntity entity = data.get(0);
+        ActividadEntity newEntity = ac.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        
+        Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
+        Assert.assertEquals(entity.getTipo(), newEntity.getTipo());
+        Assert.assertEquals(entity.getDescripcion(), newEntity.getDescripcion());
+    }
+    @Test
+    public void updateActividadTest() {
+        ActividadEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        ActividadEntity newEntity = factory.manufacturePojo(ActividadEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        ac.update(newEntity);
+        
+        ActividadEntity resp = em.find(ActividadEntity.class, entity.getId());
+        
+        Assert.assertEquals(resp.getFecha(), newEntity.getFecha());
+        Assert.assertEquals(resp.getTipo(), newEntity.getTipo());
+        Assert.assertEquals(resp.getDescripcion(), newEntity.getDescripcion());
+    }
+    
+    @Test
+    public void deleteActividadTest() {
+        ActividadEntity entity = data.get(0);
+        ac.delete(entity.getId());
+        ActividadEntity deleted = em.find(ActividadEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
 }
