@@ -6,7 +6,16 @@
 package co.edu.uniandes.csw.english4people.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+
+/*
+import javax.persistence.FetchType;
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;*/
+
 /**
  *
  * @author Juan Diego Castellanos Bonilla
@@ -15,7 +24,17 @@ import javax.persistence.Entity;
 public class MaterialDeClaseEntity extends BaseEntity implements Serializable
 {
     private String enlaceMaterial;
-
+    /*
+    @PodamExclude
+    @OneToMany(
+        mappedBy = "clase",
+    	cascade = CascadeType.PERSIST,
+    	fetch = FetchType.EAGER,
+    	orphanRemoval = true
+    )
+    private List<MaterialDeClaseEntity> material = 
+        new ArrayList<MaterialDeClaseEntity>();
+    */
     /**
      * @return the enlaceMaterial
      */

@@ -10,7 +10,9 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+/*
+import uk.co.jemos.podam.common.PodamExclude;
+import javax.persistence.ManyToOne;*/
 /**
  *
  * @author Juan Diego Castellanos Bonilla
@@ -22,7 +24,22 @@ public class ClaseEntity extends BaseEntity implements Serializable {
     private Date fecha;
     
     private String tipoClase;
-
+    
+    /*
+    @PodamExclude
+    @ManyToOne
+    private MaterialDeClaseEntity material;
+    
+    
+    @PodamExclude
+    @ManyToOne
+    private ProfesoresEntity profesor;
+    
+    @PodamExclude
+    @ManyToOne
+    private EstudianteEntity estudiantes;
+    */
+    
     /**
      * @return the fecha
      */
