@@ -5,8 +5,15 @@
  */
 package co.edu.uniandes.csw.english4people.entities;
 
+import co.edu.uniandes.csw.english4people.podam.DateStrategy;
 import javax.persistence.Entity;
 import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
@@ -19,6 +26,16 @@ public class CertificadoEntity extends BaseEntity implements Serializable{
      private String nombre;
      
      private String idioma;
+     
+     
+     @Temporal(TemporalType.DATE)
+     @PodamStrategyValue(DateStrategy.class)
+     private Date dueDate;
+     
+     @PodamExclude
+     @ManyToOne
+     private ProfesoresEntity profesor;
+     
      
       /**
      * @return el nombre
@@ -46,6 +63,34 @@ public class CertificadoEntity extends BaseEntity implements Serializable{
      */
     public void setIdioma(String idioma){
         this.idioma = idioma;
+    }
+
+    /**
+     * @return the dueDate
+     */
+    public Date getDueDate() {
+        return dueDate;
+    }
+
+    /**
+     * @param dueDate the dueDate to set
+     */
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    /**
+     * @return the profesor
+     */
+    public ProfesoresEntity getProfesor() {
+        return profesor;
+    }
+
+    /**
+     * @param profesor the profesor to set
+     */
+    public void setProfesor(ProfesoresEntity profesor) {
+        this.profesor = profesor;
     }
     
 }

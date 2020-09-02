@@ -7,6 +7,14 @@ package co.edu.uniandes.csw.english4people.entities;
 
 import javax.persistence.Entity;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
+
+
 
 /**
  *
@@ -28,6 +36,89 @@ public class ProfesoresEntity extends BaseEntity implements Serializable {
     private String informacionAcademica;
     
     private String canalYoutube;
+    
+    @PodamExclude
+    @OneToMany(
+            mappedBy= "profesor",
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true
+    )
+    private List<CertificadoEntity> certificados =
+            new ArrayList<CertificadoEntity>();
+    
+    @PodamExclude
+    @OneToMany(
+            mappedBy= "profesor",
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true
+    )
+    private List<CalificacionEntity> calificaciones =
+            new ArrayList<CalificacionEntity>();
+    
+    @PodamExclude
+    @OneToMany(
+            mappedBy= "profesor",
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true
+    )
+    private List<ChatEntity> chats =
+            new ArrayList<ChatEntity>();
+    
+    
+    @PodamExclude
+    @OneToMany(
+            mappedBy= "profesor",
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true
+    )
+    private List<IdiomaEntity> idiomas =
+            new ArrayList<IdiomaEntity>();
+    
+    
+    @PodamExclude
+    @OneToMany(
+            mappedBy= "profesor",
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true
+    )
+    private List<ClaseEntity> clases =
+            new ArrayList<ClaseEntity>();
+    
+    @PodamExclude
+    @OneToMany(
+            mappedBy= "profesor",
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true
+    )
+    private List<ActividadEntity> actividades =
+            new ArrayList<ActividadEntity>();
+    
+    @PodamExclude
+    @OneToMany(
+            mappedBy= "profesor",
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true
+    )
+    private List<HorarioEntity> horariosDisponible =
+            new ArrayList<HorarioEntity>();
+    
+    @PodamExclude
+    @OneToMany(
+            mappedBy= "profesor",
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true
+    )
+    private List<ContratoEntity> contratos =
+            new ArrayList<ContratoEntity>();
+    
     
     
     /**
@@ -126,6 +217,118 @@ public class ProfesoresEntity extends BaseEntity implements Serializable {
      */
     public void setCanalYoutube(String canalYoutube){
         this.canalYoutube = canalYoutube;
+    }
+
+    /**
+     * @return the certificados
+     */
+    public List<CertificadoEntity> getCertificados() {
+        return certificados;
+    }
+
+    /**
+     * @param certificados the certificados to set
+     */
+    public void setCertificados(List<CertificadoEntity> certificados) {
+        this.certificados = certificados;
+    }
+
+    /**
+     * @return the calificaciones
+     */
+    public List<CalificacionEntity> getCalificaciones() {
+        return calificaciones;
+    }
+
+    /**
+     * @param calificaciones the calificaciones to set
+     */
+    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
+        this.calificaciones = calificaciones;
+    }
+
+    /**
+     * @return the chats
+     */
+    public List<ChatEntity> getChats() {
+        return chats;
+    }
+
+    /**
+     * @param chats the chats to set
+     */
+    public void setChats(List<ChatEntity> chats) {
+        this.chats = chats;
+    }
+
+    /**
+     * @return the idiomas
+     */
+    public List<IdiomaEntity> getIdiomas() {
+        return idiomas;
+    }
+
+    /**
+     * @param idiomas the idiomas to set
+     */
+    public void setIdiomas(List<IdiomaEntity> idiomas) {
+        this.idiomas = idiomas;
+    }
+
+    /**
+     * @return the clases
+     */
+    public List<ClaseEntity> getClases() {
+        return clases;
+    }
+
+    /**
+     * @param clases the clases to set
+     */
+    public void setClases(List<ClaseEntity> clases) {
+        this.clases = clases;
+    }
+
+    /**
+     * @return the actividades
+     */
+    public List<ActividadEntity> getActividades() {
+        return actividades;
+    }
+
+    /**
+     * @param actividades the actividades to set
+     */
+    public void setActividades(List<ActividadEntity> actividades) {
+        this.actividades = actividades;
+    }
+
+    /**
+     * @return the horariosDisponible
+     */
+    public List<HorarioEntity> getHorariosDisponible() {
+        return horariosDisponible;
+    }
+
+    /**
+     * @param horariosDisponible the horariosDisponible to set
+     */
+    public void setHorariosDisponible(List<HorarioEntity> horariosDisponible) {
+        this.horariosDisponible = horariosDisponible;
+    }
+
+    /**
+     * @return the contratos
+     */
+    public List<ContratoEntity> getContratos() {
+        return contratos;
+    }
+
+    /**
+     * @param contratos the contratos to set
+     */
+    public void setContratos(List<ContratoEntity> contratos) {
+        this.contratos = contratos;
     }
     
 }
