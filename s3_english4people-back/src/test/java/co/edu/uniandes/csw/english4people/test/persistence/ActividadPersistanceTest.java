@@ -82,7 +82,7 @@ public class ActividadPersistanceTest {
     }    
     
      private void clearData() {
-        em.createQuery("delete from CalificacionEntity").executeUpdate();
+        em.createQuery("delete from ActividadEntity").executeUpdate();
     }
      
      private void insertData() {

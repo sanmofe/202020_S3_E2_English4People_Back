@@ -79,7 +79,7 @@ public class MaterialDeClasePersistanceTest {
     }
 
  private void clearData() {
-        em.createQuery("delete from CalificacionEntity").executeUpdate();
+        em.createQuery("delete from MaterialDeClaseEntity").executeUpdate();
     }
      
      private void insertData() {
