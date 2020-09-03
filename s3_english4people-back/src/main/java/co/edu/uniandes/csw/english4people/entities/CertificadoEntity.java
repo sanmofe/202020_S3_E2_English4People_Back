@@ -8,6 +8,8 @@ package co.edu.uniandes.csw.english4people.entities;
 
 import javax.persistence.Entity;
 import java.io.Serializable;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 /*
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -24,20 +26,28 @@ import co.edu.uniandes.csw.english4people.podam.DateStrategy;
 
 @Entity
 public class CertificadoEntity extends BaseEntity implements Serializable{
+
+    /**
+     * @return the profesor
+     */
+    public ProfesoresEntity getProfesor() {
+        return profesor;
+    }
+
+    /**
+     * @param profesor the profesor to set
+     */
+    public void setProfesor(ProfesoresEntity profesor) {
+        this.profesor = profesor;
+    }
     
      private String nombre;
      
      private String idioma;
      
-     /*
-     @Temporal(TemporalType.TIMESTAMP)
-     @PodamStrategyValue(DateStrategy.class)
-     private Date dueDate;
-     
      @PodamExclude
      @ManyToOne
      private ProfesoresEntity profesor;
-     */
      
       /**
      * @return el nombre

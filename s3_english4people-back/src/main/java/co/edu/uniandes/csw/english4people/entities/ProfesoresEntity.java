@@ -41,7 +41,6 @@ public class ProfesoresEntity extends BaseEntity implements Serializable {
     
     private String canalYoutube;
     
-    /*
     @PodamExclude
     @OneToMany(
             mappedBy= "profesor",
@@ -51,17 +50,17 @@ public class ProfesoresEntity extends BaseEntity implements Serializable {
     )
     private List<CertificadoEntity> certificados =
             new ArrayList<CertificadoEntity>();
-    
+
     @PodamExclude
     @OneToMany(
-            mappedBy= "profesor",
+            mappedBy = "profesor",
             cascade = CascadeType.PERSIST,
             fetch = FetchType.EAGER,
             orphanRemoval = true
     )
     private List<CalificacionEntity> calificaciones =
             new ArrayList<CalificacionEntity>();
-    */
+    
     @PodamExclude
     @OneToMany(
             mappedBy = "profesor",

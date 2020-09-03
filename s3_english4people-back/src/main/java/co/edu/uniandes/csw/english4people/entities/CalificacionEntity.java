@@ -13,6 +13,34 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 @Entity
 public class CalificacionEntity extends BaseEntity implements Serializable{
+
+    /**
+     * @return the respuesta
+     */
+    public RespuestaEntity getRespuesta() {
+        return respuesta;
+    }
+
+    /**
+     * @param respuesta the respuesta to set
+     */
+    public void setRespuesta(RespuestaEntity respuesta) {
+        this.respuesta = respuesta;
+    }
+
+    /**
+     * @return the profesor
+     */
+    public ProfesoresEntity getProfesor() {
+        return profesor;
+    }
+
+    /**
+     * @param profesor the profesor to set
+     */
+    public void setProfesor(ProfesoresEntity profesor) {
+        this.profesor = profesor;
+    }
     
     private Double calificacionNumerica;
     
@@ -20,27 +48,15 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     
     private String nombreEstudiante;
     
-    /*
     @PodamExclude
-    @OneToOne(mappedBy = "calificacion", fetch=FetchType.LAZY)
     private RespuestaEntity respuesta;
-    */
+    
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
     
-    /*
+    @PodamExclude
     @ManyToOne
     private ProfesoresEntity profesor;
-    */
-    /*
-    public RespuestaEntity getRespuesta() {
-        return respuesta;
-    }
-
-    public void setRespuesta(RespuestaEntity respuesta) {
-        this.respuesta = respuesta;
-    }
-    */
 
     public Double getCalificacionNumerica() {
         return calificacionNumerica;

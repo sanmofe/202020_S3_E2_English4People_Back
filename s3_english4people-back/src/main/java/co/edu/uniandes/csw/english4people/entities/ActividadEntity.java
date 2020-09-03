@@ -25,6 +25,34 @@ import uk.co.jemos.podam.common.PodamExclude;*/
  */
 @Entity
 public class ActividadEntity extends BaseEntity implements Serializable {
+
+    /**
+     * @return the profesor
+     */
+    public ProfesoresEntity getProfesor() {
+        return profesor;
+    }
+
+    /**
+     * @param profesor the profesor to set
+     */
+    public void setProfesor(ProfesoresEntity profesor) {
+        this.profesor = profesor;
+    }
+
+    /**
+     * @return the estudiantes
+     */
+    public List<EstudianteEntity> getEstudiantes() {
+        return estudiantes;
+    }
+
+    /**
+     * @param estudiantes the estudiantes to set
+     */
+    public void setEstudiantes(List<EstudianteEntity> estudiantes) {
+        this.estudiantes = estudiantes;
+    }
     
    @Temporal(TemporalType.TIMESTAMP)
    private Date fecha;
