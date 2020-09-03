@@ -70,5 +70,4 @@ public class MensajeEntity extends BaseEntity implements Serializable{
         this.fecha = fecha;
     
     }
-    
 }
