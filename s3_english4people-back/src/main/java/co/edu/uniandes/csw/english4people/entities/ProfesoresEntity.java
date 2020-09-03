@@ -81,7 +81,7 @@ public class ProfesoresEntity extends BaseEntity implements Serializable {
     private List<IdiomaEntity> idiomas =
             new ArrayList<IdiomaEntity>();
     
-    
+    */
     @PodamExclude
     @OneToMany(
             mappedBy= "profesor",
@@ -91,8 +91,7 @@ public class ProfesoresEntity extends BaseEntity implements Serializable {
     )
     private List<ClaseEntity> clases =
             new ArrayList<ClaseEntity>();
-    */
-    
+       
     @PodamExclude
     @OneToMany(
             mappedBy = "profesor",
@@ -112,17 +111,17 @@ public class ProfesoresEntity extends BaseEntity implements Serializable {
     )
     private List<HorarioEntity> horariosDisponible =
             new ArrayList<HorarioEntity>();
+    */
     
     @PodamExclude
     @OneToMany(
-            mappedBy= "profesor",
+            mappedBy = "profesor",
             cascade = CascadeType.PERSIST,
             fetch = FetchType.EAGER,
             orphanRemoval = true
     )
     private List<ContratoEntity> contratos =
             new ArrayList<ContratoEntity>();
-    */
     
     /**
      * @return el nombre

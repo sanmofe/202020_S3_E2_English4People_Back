@@ -8,7 +8,11 @@ package co.edu.uniandes.csw.english4people.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /*
 import javax.persistence.FetchType;
@@ -24,17 +28,11 @@ import uk.co.jemos.podam.common.PodamExclude;*/
 public class MaterialDeClaseEntity extends BaseEntity implements Serializable
 {
     private String enlaceMaterial;
-    /*
+    
     @PodamExclude
-    @OneToMany(
-        mappedBy = "clase",
-    	cascade = CascadeType.PERSIST,
-    	fetch = FetchType.EAGER,
-    	orphanRemoval = true
-    )
-    private List<MaterialDeClaseEntity> material = 
-        new ArrayList<MaterialDeClaseEntity>();
-    */
+    @ManyToOne
+    private ClaseEntity clase;
+    
     /**
      * @return the enlaceMaterial
      */

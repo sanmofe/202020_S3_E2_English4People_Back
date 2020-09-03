@@ -7,8 +7,10 @@ package co.edu.uniandes.csw.english4people.entities;
 import javax.persistence.Entity;
 import java.io.Serializable;
 import java.util.*;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 /**
  *
  * @author Juan David Becerra Romero
@@ -20,12 +22,9 @@ public class MensajeEntity extends BaseEntity implements Serializable{
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
     
-     /*
     @PodamExclude
     @ManyToOne
-    private List<ChatEntity> chats = new ArrayList<ChatEntity>();
-    */
-    
+    private ChatEntity chat;
     
      /**
      * @return el contenido del mensaje

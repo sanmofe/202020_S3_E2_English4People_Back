@@ -9,7 +9,10 @@ import javax.persistence.Entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -19,13 +22,68 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class EstudianteEntity extends BaseEntity implements Serializable {
 
+    /**
+     * @return the chats
+     */
+    public List<ChatEntity> getChats() {
+        return chats;
+    }
+
+    /**
+     * @param chats the chats to set
+     */
+    public void setChats(List<ChatEntity> chats) {
+        this.chats = chats;
+    }
+
+    /**
+     * @return the clases
+     */
+    public List<ClaseEntity> getClases() {
+        return clases;
+    }
+
+    /**
+     * @param clases the clases to set
+     */
+    public void setClases(List<ClaseEntity> clases) {
+        this.clases = clases;
+    }
+
+    /**
+     * @return the actividades
+     */
+    public List<ActividadEntity> getActividades() {
+        return actividades;
+    }
+
+    /**
+     * @param actividades the actividades to set
+     */
+    public void setActividades(List<ActividadEntity> actividades) {
+        this.actividades = actividades;
+    }
+
+    /**
+     * @return the contratos
+     */
+    public List<ContratoEntity> getContratos() {
+        return contratos;
+    }
+
+    /**
+     * @param contratos the contratos to set
+     */
+    public void setContratos(List<ContratoEntity> contratos) {
+        this.contratos = contratos;
+    }
+
     private String nombre;
     private Integer identificacion;
     private String login;
     private String correo;
     private String contrasena;
-   
-     /*
+    
     @PodamExclude
     @OneToMany(
             mappedBy= "estudiante",
@@ -35,7 +93,7 @@ public class EstudianteEntity extends BaseEntity implements Serializable {
     )
     private List<ChatEntity> chats =
             new ArrayList<ChatEntity>();
-    
+  
     @PodamExclude
     @OneToMany(
             mappedBy= "estudiante",
@@ -45,12 +103,10 @@ public class EstudianteEntity extends BaseEntity implements Serializable {
     )
     private List<ClaseEntity> clases =
             new ArrayList<ClaseEntity>();
-    */
+    
     @PodamExclude
     @ManyToMany (mappedBy = "estudiantes")
     private List<ActividadEntity> actividades = new ArrayList<>();
-    
-    /*
     
     @PodamExclude
     @OneToMany(
@@ -61,7 +117,6 @@ public class EstudianteEntity extends BaseEntity implements Serializable {
     )
     private List<ContratoEntity> contratos =
             new ArrayList<ContratoEntity>();
-    */
     
     /**
      * @return el nombre
