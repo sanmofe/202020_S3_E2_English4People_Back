@@ -18,6 +18,20 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class MensajeEntity extends BaseEntity implements Serializable{
 
+    /**
+     * @return the chat
+     */
+    public ChatEntity getChat() {
+        return chat;
+    }
+
+    /**
+     * @param chat the chat to set
+     */
+    public void setChat(ChatEntity chat) {
+        this.chat = chat;
+    }
+
     private String contenido;
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
