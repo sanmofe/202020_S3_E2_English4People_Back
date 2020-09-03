@@ -6,11 +6,7 @@
 package co.edu.uniandes.csw.english4people.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -27,6 +23,20 @@ import uk.co.jemos.podam.common.PodamExclude;*/
 @Entity
 public class MaterialDeClaseEntity extends BaseEntity implements Serializable
 {
+
+    /**
+     * @return the clase
+     */
+    public ClaseEntity getClase() {
+        return clase;
+    }
+
+    /**
+     * @param clase the clase to set
+     */
+    public void setClase(ClaseEntity clase) {
+        this.clase = clase;
+    }
     private String enlaceMaterial;
     
     @PodamExclude

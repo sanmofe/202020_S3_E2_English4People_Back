@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,6 +26,34 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class HorarioEntity extends BaseEntity implements Serializable{
+
+    /**
+     * @return the diaSemana
+     */
+    public DiaSemanaEntity getDiaSemana() {
+        return diaSemana;
+    }
+
+    /**
+     * @param diaSemana the diaSemana to set
+     */
+    public void setDiaSemana(DiaSemanaEntity diaSemana) {
+        this.diaSemana = diaSemana;
+    }
+
+    /**
+     * @return the profesor
+     */
+    public ProfesoresEntity getProfesor() {
+        return profesor;
+    }
+
+    /**
+     * @param profesor the profesor to set
+     */
+    public void setProfesor(ProfesoresEntity profesor) {
+        this.profesor = profesor;
+    }
     
      @Temporal(TemporalType.TIMESTAMP)
     private Date horaInicio;
@@ -32,12 +61,13 @@ public class HorarioEntity extends BaseEntity implements Serializable{
      @Temporal(TemporalType.TIMESTAMP)
     private Date horaFin;
      
-     /**
     @PodamExclude
-    @OneToOne
     private DiaSemanaEntity diaSemana;
-    */
 
+    @PodamExclude
+    @ManyToOne
+    private ProfesoresEntity profesor;
+    
      /**
       * 
       * @return the horaInicio

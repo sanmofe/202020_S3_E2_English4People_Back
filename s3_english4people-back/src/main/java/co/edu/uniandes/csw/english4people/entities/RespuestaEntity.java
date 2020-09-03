@@ -16,12 +16,6 @@ public class RespuestaEntity extends BaseEntity implements Serializable {
     private Date fecha;
     
     private String comentario;
-/*
-    @PodamExclude
-    @OneToOne
-    private CalificacionEntity calificacion;
-  */  
-
     
     public Date getFecha() {
         return fecha;
