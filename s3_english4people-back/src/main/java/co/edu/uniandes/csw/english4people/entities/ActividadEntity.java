@@ -6,8 +6,15 @@
 package co.edu.uniandes.csw.english4people.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 /*
 import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;*/
@@ -19,20 +26,20 @@ import uk.co.jemos.podam.common.PodamExclude;*/
 @Entity
 public class ActividadEntity extends BaseEntity implements Serializable {
     
+   @Temporal(TemporalType.TIMESTAMP)
    private Date fecha;
    
    private String tipo;
    
    private String descripcion;
-    /*
-   @PodamExclude
+    
+    @PodamExclude
     @ManyToOne
     private ProfesoresEntity profesor;
     
     @PodamExclude
-    @ManyToOne
-    private EstudianteEntity estudiantes;
-    */
+    @ManyToMany
+    private List<EstudianteEntity> estudiantes = new ArrayList<EstudianteEntity>();
    
     /**
      * @return the fecha

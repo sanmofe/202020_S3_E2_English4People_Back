@@ -28,9 +28,10 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
     
+    /*
     @ManyToOne
     private ProfesoresEntity profesor;
-    
+    */
     /*
     public RespuestaEntity getRespuesta() {
         return respuesta;
@@ -40,13 +41,6 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
         this.respuesta = respuesta;
     }
     */
-    public ProfesoresEntity getProfesor() {
-        return profesor;
-    }
-
-    public void setProfesor(ProfesoresEntity profesor) {
-        this.profesor = profesor;
-    }
 
     public Double getCalificacionNumerica() {
         return calificacionNumerica;

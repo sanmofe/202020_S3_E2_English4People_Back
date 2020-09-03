@@ -7,6 +7,10 @@ package co.edu.uniandes.csw.english4people.entities;
 
 import javax.persistence.Entity;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.ManyToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -41,12 +45,12 @@ public class EstudianteEntity extends BaseEntity implements Serializable {
     )
     private List<ClaseEntity> clases =
             new ArrayList<ClaseEntity>();
-    
+    */
     @PodamExclude
-    @ManyToMany
-    private List<ActividadEntity> actividades =
-            new ArrayList<ActividadEntity>();
+    @ManyToMany (mappedBy = "estudiantes")
+    private List<ActividadEntity> actividades = new ArrayList<>();
     
+    /*
     
     @PodamExclude
     @OneToMany(

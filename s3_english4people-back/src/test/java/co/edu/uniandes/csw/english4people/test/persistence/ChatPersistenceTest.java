@@ -34,7 +34,8 @@ public class ChatPersistenceTest {
     {
         return ShrinkWrap.create(JavaArchive.class).addPackage(ChatEntity.class.getPackage()).addPackage(ChatPersistence.class.getPackage()).addAsManifestResource("META-INF/persistence.xml","persistence.xml").addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-      @Inject
+    
+    @Inject
     ChatPersistence cp;
     
     @PersistenceContext
@@ -44,22 +45,6 @@ public class ChatPersistenceTest {
     UserTransaction utx;
 
     private List<ChatEntity> data = new ArrayList<ChatEntity>();
-    
-    private void clearData() {
-        em.createQuery("delete from ChatEntity").executeUpdate();
-    }
-
-    private void insertData() {
-        PodamFactory factory = new PodamFactoryImpl();
-        for (int i = 0; i < 3; i++) {
-
-            ChatEntity entity = factory.manufacturePojo(ChatEntity.class);
-
-            em.persist(entity);
-
-            data.add(entity);
-        }
-    }
     
     @Before
     public void configTest() {
@@ -79,6 +64,22 @@ public class ChatPersistenceTest {
         }
     }
     
+    private void clearData() {
+        em.createQuery("delete from ChatEntity").executeUpdate();
+    }
+
+    private void insertData() {
+        PodamFactory factory = new PodamFactoryImpl();
+        for (int i = 0; i < 3; i++) {
+
+            ChatEntity entity = factory.manufacturePojo(ChatEntity.class);
+
+            em.persist(entity);
+
+            data.add(entity);
+        }
+    }
+        
     @Test
     public void createTest()
     {

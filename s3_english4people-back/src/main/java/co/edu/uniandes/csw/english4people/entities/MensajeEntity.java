@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.english4people.entities;
 import javax.persistence.Entity;
 import java.io.Serializable;
 import java.util.*;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 /**
  *
  * @author Juan David Becerra Romero
@@ -15,6 +17,7 @@ import java.util.*;
 public class MensajeEntity extends BaseEntity implements Serializable{
 
     private String contenido;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
     
      /*

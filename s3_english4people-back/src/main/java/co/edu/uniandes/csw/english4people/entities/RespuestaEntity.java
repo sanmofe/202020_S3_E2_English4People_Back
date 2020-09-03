@@ -16,18 +16,12 @@ public class RespuestaEntity extends BaseEntity implements Serializable {
     private Date fecha;
     
     private String comentario;
-
+/*
     @PodamExclude
     @OneToOne
     private CalificacionEntity calificacion;
-    
-    public CalificacionEntity getCalificacion() {
-        return calificacion;
-    }
+  */  
 
-    public void setCalificacion(CalificacionEntity calificacion) {
-        this.calificacion = calificacion;
-    }
     
     public Date getFecha() {
         return fecha;

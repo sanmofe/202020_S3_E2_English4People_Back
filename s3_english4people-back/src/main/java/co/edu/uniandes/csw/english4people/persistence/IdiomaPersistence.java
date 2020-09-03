@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.english4people.persistence;
 
 import co.edu.uniandes.csw.english4people.entities.IdiomaEntity;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
