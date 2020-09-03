@@ -13,6 +13,15 @@ import java.io.Serializable;
  */
 @Entity
 public class ChatEntity extends BaseEntity implements Serializable{
+    /*
+    @PodamExclude
+    @ManyToOne
+    private List<ProfesorEntity> profesores = new ArrayList<ProfesorEntity>();
+    
+    @PodamExclude
+    @ManyToOne
+    private List<EstudianteEntity> estudiantes = new ArrayList<EstudianteEntity>();
+    */
     
   
 }

@@ -17,6 +17,12 @@ public class MensajeEntity extends BaseEntity implements Serializable{
     private String contenido;
     private Date fecha;
     
+     /*
+    @PodamExclude
+    @ManyToOne
+    private List<ChatEntity> chats = new ArrayList<ChatEntity>();
+    */
+    
     
      /**
      * @return el contenido del mensaje

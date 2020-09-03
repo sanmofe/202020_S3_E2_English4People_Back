@@ -20,6 +20,44 @@ public class EstudianteEntity extends BaseEntity implements Serializable {
     private String login;
     private String correo;
     private String contrasena;
+   
+     /*
+    @PodamExclude
+    @OneToMany(
+            mappedBy= "estudiante",
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true
+    )
+    private List<ChatEntity> chats =
+            new ArrayList<ChatEntity>();
+    
+    @PodamExclude
+    @OneToMany(
+            mappedBy= "estudiante",
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true
+    )
+    private List<ClaseEntity> clases =
+            new ArrayList<ClaseEntity>();
+    
+    @PodamExclude
+    @ManyToMany
+    private List<ActividadEntity> actividades =
+            new ArrayList<ActividadEntity>();
+    
+    
+    @PodamExclude
+    @OneToMany(
+            mappedBy= "estudiante",
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true
+    )
+    private List<ContratoEntity> contratos =
+            new ArrayList<ContratoEntity>();
+    */
     
     /**
      * @return el nombre
