@@ -4,8 +4,12 @@ package co.edu.uniandes.csw.english4people.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 
 @Entity
 public class CalificacionEntity extends BaseEntity implements Serializable{
@@ -16,9 +20,33 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     
     private String nombreEstudiante;
     
+    /*
+    @PodamExclude
+    @OneToOne(mappedBy = "calificacion", fetch=FetchType.LAZY)
+    private RespuestaEntity respuesta;
+    */
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
     
+    @ManyToOne
+    private ProfesoresEntity profesor;
+    
+    /*
+    public RespuestaEntity getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(RespuestaEntity respuesta) {
+        this.respuesta = respuesta;
+    }
+    */
+    public ProfesoresEntity getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(ProfesoresEntity profesor) {
+        this.profesor = profesor;
+    }
 
     public Double getCalificacionNumerica() {
         return calificacionNumerica;
