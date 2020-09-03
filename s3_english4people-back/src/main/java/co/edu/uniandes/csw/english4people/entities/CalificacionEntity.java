@@ -89,5 +89,4 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    
 }
