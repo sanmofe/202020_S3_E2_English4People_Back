@@ -32,5 +32,4 @@ public class RespuestaEntity extends BaseEntity implements Serializable {
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
-    
 }
