@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.english4people.test.persistence;
+
 import co.edu.uniandes.csw.english4people.entities.MensajeEntity;
 import co.edu.uniandes.csw.english4people.persistence.MensajePersistence;
 import java.util.ArrayList;
@@ -29,23 +30,22 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class MensajePersistenceTest {
-    
+
     @Deployment
-    public static JavaArchive createDeployment()
-    {
-        return ShrinkWrap.create(JavaArchive.class).addPackage(MensajeEntity.class.getPackage()).addPackage(MensajePersistence.class.getPackage()).addAsManifestResource("META-INF/persistence.xml","persistence.xml").addAsManifestResource("META-INF/beans.xml", "beans.xml");
+    public static JavaArchive createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class).addPackage(MensajeEntity.class.getPackage()).addPackage(MensajePersistence.class.getPackage()).addAsManifestResource("META-INF/persistence.xml", "persistence.xml").addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-      @Inject
+    @Inject
     MensajePersistence mp;
-    
+
     @PersistenceContext
     private EntityManager em;
-    
+
     @Inject
     UserTransaction utx;
 
     private List<MensajeEntity> data = new ArrayList<MensajeEntity>();
-    
+
     private void clearData() {
         em.createQuery("delete from MensajeEntity").executeUpdate();
     }
@@ -61,7 +61,7 @@ public class MensajePersistenceTest {
             data.add(entity);
         }
     }
-    
+
     @Before
     public void configTest() {
         try {
@@ -79,23 +79,22 @@ public class MensajePersistenceTest {
             }
         }
     }
-    
+
     @Test
-    public void createTest()
-    {
+    public void createTest() {
         PodamFactory factory = new PodamFactoryImpl();
         MensajeEntity mensaje = factory.manufacturePojo(MensajeEntity.class);
         MensajeEntity result = mp.create(mensaje);
-        
+
         Assert.assertNotNull(result);
-        
+
         MensajeEntity entity = em.find(MensajeEntity.class, result.getId());
-        
+
         Assert.assertEquals(mensaje.getContenido(), entity.getContenido());
         Assert.assertEquals(mensaje.getFecha(), entity.getFecha());
-       
+        Assert.assertNull(mensaje.getChat());
     }
-    
+
     @Test
     public void getMensajesTest() {
         List<MensajeEntity> list = mp.findAll();
@@ -110,18 +109,18 @@ public class MensajePersistenceTest {
             Assert.assertTrue(found);
         }
     }
-    
+
     @Test
     public void getMensajeTest() {
         MensajeEntity entity = data.get(0);
         MensajeEntity newEntity = mp.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        
+
         Assert.assertEquals(entity.getContenido(), newEntity.getContenido());
         Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
-        
+
     }
-    
+
     @Test
     public void updateMensajeTest() {
         MensajeEntity entity = data.get(0);
@@ -133,12 +132,12 @@ public class MensajePersistenceTest {
         mp.update(newEntity);
 
         MensajeEntity resp = em.find(MensajeEntity.class, entity.getId());
-        
+
         Assert.assertEquals(newEntity.getContenido(), resp.getContenido());
         Assert.assertEquals(newEntity.getFecha(), resp.getFecha());
-        
+
     }
-    
+
     @Test
     public void deleteMensajeTest() {
         MensajeEntity entity = data.get(0);
@@ -146,10 +145,5 @@ public class MensajePersistenceTest {
         MensajeEntity deleted = em.find(MensajeEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-    
-    
-    
-    
-    
-    
+
 }

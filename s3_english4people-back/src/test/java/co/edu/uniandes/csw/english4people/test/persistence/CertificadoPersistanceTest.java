@@ -95,6 +95,7 @@ public class CertificadoPersistanceTest {
         
         Assert.assertEquals(certificado.getNombre(), entity.getNombre());
         Assert.assertEquals(certificado.getIdioma(), entity.getIdioma());
+        Assert.assertNull(certificado.getProfesor());
     }
 
     @Test

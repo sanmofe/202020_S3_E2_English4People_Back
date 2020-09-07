@@ -28,7 +28,6 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author Juan Andres Santiago Vasquez
  */
-
 @RunWith(Arquillian.class)
 public class ProfesoresPersistanceTest {
 
@@ -36,19 +35,18 @@ public class ProfesoresPersistanceTest {
     UserTransaction utx;
 
     private List<ProfesoresEntity> data = new ArrayList<ProfesoresEntity>();
-    
+
     @Inject
     ProfesoresPersistence pp;
-    
+
     @PersistenceContext
     private EntityManager em;
-    
+
     @Deployment
-    public static JavaArchive createDeployment(){
-    return ShrinkWrap.create(JavaArchive.class).addPackage(ProfesoresEntity.class.getPackage()).addPackage(ProfesoresPersistence.class.getPackage()).addAsManifestResource("META-INF/persistence.xml","persistence.xml").addAsManifestResource("META-INF/beans.xml", "beans.xml");
+    public static JavaArchive createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class).addPackage(ProfesoresEntity.class.getPackage()).addPackage(ProfesoresPersistence.class.getPackage()).addAsManifestResource("META-INF/persistence.xml", "persistence.xml").addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
-    
+
     @Before
     public void configTest() {
         try {
@@ -66,7 +64,7 @@ public class ProfesoresPersistanceTest {
             }
         }
     }
-    
+
     private void clearData() {
         em.createQuery("delete from ProfesoresEntity").executeUpdate();
     }
@@ -81,17 +79,16 @@ public class ProfesoresPersistanceTest {
 
             data.add(entity);
         }
-    }    
-    
+    }
+
     @Test
-    public void createTest()
-    {
+    public void createTest() {
         PodamFactory factory = new PodamFactoryImpl();
         ProfesoresEntity profesor = factory.manufacturePojo(ProfesoresEntity.class);
         ProfesoresEntity result = pp.create(profesor);
         Assert.assertNotNull(result);
         ProfesoresEntity entity = em.find(ProfesoresEntity.class, result.getId());
-        
+
         Assert.assertEquals(profesor.getNombre(), entity.getNombre());
         Assert.assertEquals(profesor.getIdentificacion(), entity.getIdentificacion());
         Assert.assertEquals(profesor.getLogin(), entity.getLogin());
@@ -99,9 +96,16 @@ public class ProfesoresPersistanceTest {
         Assert.assertEquals(profesor.getContrasena(), entity.getContrasena());
         Assert.assertEquals(profesor.getInformacionAcademica(), entity.getInformacionAcademica());
         Assert.assertEquals(profesor.getCanalYoutube(), entity.getCanalYoutube());
-        
-    }    
-    
+        Assert.assertNull(profesor.getIdiomas());
+        Assert.assertEquals(profesor.getCertificados().size(), entity.getCertificados().size());
+        Assert.assertEquals(profesor.getCalificaciones().size(), entity.getCalificaciones().size());
+        Assert.assertEquals(profesor.getChats().size(), entity.getChats().size());
+        Assert.assertEquals(profesor.getClases().size(), entity.getClases().size());
+        Assert.assertEquals(profesor.getActividades().size(), entity.getActividades().size());
+        Assert.assertEquals(profesor.getHorariosDisponible().size(), entity.getHorariosDisponible().size());
+        Assert.assertEquals(profesor.getContratos().size(), entity.getContratos().size());
+    }
+
     @Test
     public void getProfesoresTest() {
         List<ProfesoresEntity> list = pp.findAll();
@@ -116,13 +120,13 @@ public class ProfesoresPersistanceTest {
             Assert.assertTrue(found);
         }
     }
-    
+
     @Test
     public void getProfesorTest() {
         ProfesoresEntity entity = data.get(0);
         ProfesoresEntity newEntity = pp.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        
+
         Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
         Assert.assertEquals(entity.getIdentificacion(), newEntity.getIdentificacion());
         Assert.assertEquals(entity.getLogin(), newEntity.getLogin());
@@ -131,7 +135,7 @@ public class ProfesoresPersistanceTest {
         Assert.assertEquals(entity.getInformacionAcademica(), newEntity.getInformacionAcademica());
         Assert.assertEquals(entity.getCanalYoutube(), newEntity.getCanalYoutube());
     }
-    
+
     @Test
     public void updateProfesorTest() {
         ProfesoresEntity entity = data.get(0);
@@ -143,7 +147,7 @@ public class ProfesoresPersistanceTest {
         pp.update(newEntity);
 
         ProfesoresEntity resp = em.find(ProfesoresEntity.class, entity.getId());
-        
+
         Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
         Assert.assertEquals(newEntity.getIdentificacion(), resp.getIdentificacion());
         Assert.assertEquals(newEntity.getLogin(), resp.getLogin());
@@ -152,7 +156,7 @@ public class ProfesoresPersistanceTest {
         Assert.assertEquals(newEntity.getInformacionAcademica(), resp.getInformacionAcademica());
         Assert.assertEquals(newEntity.getCanalYoutube(), resp.getCanalYoutube());
     }
-    
+
     @Test
     public void deleteProfesoresTest() {
         ProfesoresEntity entity = data.get(0);
@@ -160,5 +164,5 @@ public class ProfesoresPersistanceTest {
         ProfesoresEntity deleted = em.find(ProfesoresEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-    
+
 }

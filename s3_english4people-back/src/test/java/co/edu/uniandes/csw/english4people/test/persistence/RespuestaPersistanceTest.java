@@ -21,21 +21,22 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 @RunWith(Arquillian.class)
 public class RespuestaPersistanceTest {
+
     @Deployment
-    public static JavaArchive createDeployment(){
-    return ShrinkWrap.create(JavaArchive.class).addPackage(RespuestaEntity.class.getPackage()).addPackage(RespuestaPersistence.class.getPackage()).addAsManifestResource("META-INF/persistence.xml","persistence.xml").addAsManifestResource("META-INF/beans.xml", "beans.xml");
+    public static JavaArchive createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class).addPackage(RespuestaEntity.class.getPackage()).addPackage(RespuestaPersistence.class.getPackage()).addAsManifestResource("META-INF/persistence.xml", "persistence.xml").addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+
     @Inject
     UserTransaction utx;
     private List<RespuestaEntity> data = new ArrayList<RespuestaEntity>();
-    
+
     @Inject
     RespuestaPersistence rp;
-    
+
     @PersistenceContext
     private EntityManager em;
-    
+
     @Before
     public void configTest() {
         try {
@@ -53,25 +54,23 @@ public class RespuestaPersistanceTest {
             }
         }
     }
-    
+
     @Test
-    public void createTest()
-    {
+    public void createTest() {
         PodamFactory factory = new PodamFactoryImpl();
         RespuestaEntity respuesta = factory.manufacturePojo(RespuestaEntity.class);
         RespuestaEntity result = rp.create(respuesta);
         Assert.assertNotNull(result);
         RespuestaEntity entity = em.find(RespuestaEntity.class, result.getId());
-        
+
         Assert.assertEquals(respuesta.getFecha(), entity.getFecha());
         Assert.assertEquals(respuesta.getComentario(), entity.getComentario());
-               
-    }    
-    
+    }
+
     private void clearData() {
         em.createQuery("delete from RespuestaEntity").executeUpdate();
     }
-        
+
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
@@ -82,9 +81,9 @@ public class RespuestaPersistanceTest {
 
             data.add(entity);
         }
-    }    
-    
-        @Test
+    }
+
+    @Test
     public void getRespuestasTest() {
         List<RespuestaEntity> list = rp.findAll();
         Assert.assertEquals(data.size(), list.size());
@@ -98,18 +97,18 @@ public class RespuestaPersistanceTest {
             Assert.assertTrue(found);
         }
     }
-    
+
     @Test
     public void getRespuestaTest() {
         RespuestaEntity entity = data.get(0);
         RespuestaEntity newEntity = rp.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        
+
         Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
         Assert.assertEquals(entity.getComentario(), newEntity.getComentario());
-        
+
     }
-    
+
     @Test
     public void updateRespuestaTest() {
         RespuestaEntity entity = data.get(0);
@@ -119,13 +118,13 @@ public class RespuestaPersistanceTest {
         newEntity.setId(entity.getId());
 
         rp.update(newEntity);
-        
+
         RespuestaEntity resp = em.find(RespuestaEntity.class, entity.getId());
-        
+
         Assert.assertEquals(resp.getFecha(), newEntity.getFecha());
         Assert.assertEquals(resp.getComentario(), newEntity.getComentario());
     }
-    
+
     @Test
     public void deleteRespuestaTest() {
         RespuestaEntity entity = data.get(0);

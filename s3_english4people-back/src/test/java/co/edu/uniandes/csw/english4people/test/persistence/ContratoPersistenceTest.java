@@ -28,41 +28,41 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author Sara Plazas
  */
-
 //RunWith Arquillian porque ejecuta un servidor de aplicaciones y una base de datos temporal
 @RunWith(Arquillian.class)
 public class ContratoPersistenceTest {
-    
+
     /**
-     * Deployment para que Arquillian sepa que es
-     * Contiene lo que se quiere probar
+     * Deployment para que Arquillian sepa que es Contiene lo que se quiere
+     * probar
+     *
      * @return El archivo .jar que se deplegara en el servidor de aplicaciones
      */
     @Deployment
-    public static JavaArchive createDeployment(){
+    public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class).addPackage(ContratoEntity.class.getPackage()).addPackage(ContratoPersistence.class.getPackage()).addAsManifestResource("META-INF/persistence.xml", "persistence.xml").addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+
     //"Inicializa" e inyecta lo que se quiere probar (clase persistance)
     //New clase de persistencia
     @Inject
     ContratoPersistence cp;
-    
+
     //PersistenceContext -> conjunto de entidades tal que para cada persistencia hay una entidad unica. Las entidades son manegadas en el contexto de persistencia.
     @PersistenceContext
     //El elemento principal de JPA para acceder a la base de datos
     private EntityManager em;
-    
+
     //"Inicializa" e inyecta UserTransaccion que es una interface que permite a la aplicacion manejar transacciones
     @Inject
     UserTransaction utx;
-    
+
     //Lista de datos
     private List<ContratoEntity> data = new ArrayList<ContratoEntity>();
-    
-     /**
-     * Configuración inicial de la prueba.
-     * Prepara los atributos para correr las pruebas desde cero
+
+    /**
+     * Configuración inicial de la prueba. Prepara los atributos para correr las
+     * pruebas desde cero
      */
     @Before
     public void configTest() {
@@ -83,14 +83,16 @@ public class ContratoPersistenceTest {
     }
 
     /**
-     * Limpia las tablas que están implicadas en la prueba (limpia la informacion de pruebas anteriores)
+     * Limpia las tablas que están implicadas en la prueba (limpia la
+     * informacion de pruebas anteriores)
      */
     private void clearData() {
         em.createQuery("delete from ContratoEntity").executeUpdate();
     }
 
     /**
-     * Inserta los informacion nueva iniciales para el correcto funcionamiento de las pruebas (correr de 0).
+     * Inserta los informacion nueva iniciales para el correcto funcionamiento
+     * de las pruebas (correr de 0).
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
@@ -101,21 +103,26 @@ public class ContratoPersistenceTest {
             data.add(entity);
         }
     }
-    
+
     @Test
-    public void createTest(){
+    public void createTest() {
         PodamFactory factory = new PodamFactoryImpl();
         ContratoEntity contrato = factory.manufacturePojo(ContratoEntity.class);
+        contrato.setProfesor(null);
+        contrato.setEstudiante(null);
         ContratoEntity result = cp.create(contrato);
         Assert.assertNotNull(result);
-        
+
         ContratoEntity entity = em.find(ContratoEntity.class, result.getId());
         Assert.assertEquals(contrato.getNumeroHoras(), entity.getNumeroHoras());
         Assert.assertEquals(contrato.getCosto(), entity.getCosto());
         Assert.assertEquals(contrato.getMedioPago(), entity.getMedioPago());
-    }
-    
-     @Test
+        Assert.assertNull(contrato.getProfesor());
+        Assert.assertNull(contrato.getEstudiante());
+        Assert.assertEquals(contrato.getHorarios().size(), entity.getHorarios().size());
+   }
+
+    @Test
     public void getContratosTest() {
         List<ContratoEntity> list = cp.findAll();
         Assert.assertEquals(data.size(), list.size());
@@ -129,7 +136,7 @@ public class ContratoPersistenceTest {
             Assert.assertTrue(found);
         }
     }
-    
+
     @Test
     public void getContratoTest() {
         ContratoEntity entity = data.get(0);
@@ -139,7 +146,7 @@ public class ContratoPersistenceTest {
         Assert.assertEquals(entity.getMedioPago(), newEntity.getMedioPago());
         Assert.assertEquals(entity.getNumeroHoras(), newEntity.getNumeroHoras());
     }
-    
+
     @Test
     public void updateTest() {
         ContratoEntity entity = data.get(0);
@@ -156,7 +163,7 @@ public class ContratoPersistenceTest {
         Assert.assertEquals(newEntity.getMedioPago(), resp.getMedioPago());
         Assert.assertEquals(newEntity.getNumeroHoras(), resp.getNumeroHoras());
     }
-    
+
     @Test
     public void deleteTest() {
         ContratoEntity entity = data.get(0);

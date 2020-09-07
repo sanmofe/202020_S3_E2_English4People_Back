@@ -60,13 +60,6 @@ public class ContratoEntity extends BaseEntity implements Serializable{
     public void setEstudiante(EstudianteEntity estudiante) {
         this.estudiante = estudiante;
     }
-
-    /**
-     * @return the horario
-     */
-    public List<HorarioEntity> getHorario() {
-        return getHorarios();
-    }
     
     private Integer numeroHoras;
     

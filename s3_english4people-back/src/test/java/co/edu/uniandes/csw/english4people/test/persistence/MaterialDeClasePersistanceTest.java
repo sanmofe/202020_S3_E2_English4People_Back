@@ -5,9 +5,6 @@
  */
 package co.edu.uniandes.csw.english4people.test.persistence;
 
-
-
-
 import co.edu.uniandes.csw.english4people.entities.MaterialDeClaseEntity;
 import co.edu.uniandes.csw.english4people.persistence.MaterialDeClasePersistence;
 import java.util.ArrayList;
@@ -33,21 +30,22 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class MaterialDeClasePersistanceTest {
+
     @Deployment
-    public static JavaArchive createDeployment(){
-    return ShrinkWrap.create(JavaArchive.class).addPackage(MaterialDeClaseEntity.class.getPackage()).addPackage(MaterialDeClasePersistence.class.getPackage()).addAsManifestResource("META-INF/persistence.xml","persistence.xml").addAsManifestResource("META-INF/beans.xml", "beans.xml");
+    public static JavaArchive createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class).addPackage(MaterialDeClaseEntity.class.getPackage()).addPackage(MaterialDeClasePersistence.class.getPackage()).addAsManifestResource("META-INF/persistence.xml", "persistence.xml").addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+
     @Inject
     MaterialDeClasePersistence mdc;
-    
+
     @PersistenceContext
     private EntityManager em;
-    
-     @Inject
+
+    @Inject
     UserTransaction utx;
     private List<MaterialDeClaseEntity> data = new ArrayList<MaterialDeClaseEntity>();
-    
+
     @Before
     public void configTest() {
         try {
@@ -65,34 +63,34 @@ public class MaterialDeClasePersistanceTest {
             }
         }
     }
-    
+
     @Test
-    public void createTest()
-    {
+    public void createTest() {
         PodamFactory factory = new PodamFactoryImpl();
         MaterialDeClaseEntity material = factory.manufacturePojo(MaterialDeClaseEntity.class);
         MaterialDeClaseEntity result = mdc.create(material);
         Assert.assertNotNull(result);
         MaterialDeClaseEntity entity = em.find(MaterialDeClaseEntity.class, result.getId());
-        
+
         Assert.assertEquals(material.getEnlaceMaterial(), entity.getEnlaceMaterial());
+        Assert.assertNull(material.getClase());
     }
 
- private void clearData() {
+    private void clearData() {
         em.createQuery("delete from MaterialDeClaseEntity").executeUpdate();
     }
-     
-     private void insertData() {
+
+    private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            
+
             MaterialDeClaseEntity entity = factory.manufacturePojo(MaterialDeClaseEntity.class);
             em.persist(entity);
 
             data.add(entity);
         }
     }
-     
+
     @Test
     public void getClasesTest() {
         List<MaterialDeClaseEntity> list = mdc.findAll();
@@ -107,16 +105,16 @@ public class MaterialDeClasePersistanceTest {
             Assert.assertTrue(found);
         }
     }
-    
+
     @Test
     public void getClaseTest() {
         MaterialDeClaseEntity entity = data.get(0);
         MaterialDeClaseEntity newEntity = mdc.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        
+
         Assert.assertEquals(entity.getEnlaceMaterial(), newEntity.getEnlaceMaterial());
     }
-    
+
     @Test
     public void updateClaseTest() {
         MaterialDeClaseEntity entity = data.get(0);
@@ -126,18 +124,18 @@ public class MaterialDeClasePersistanceTest {
         newEntity.setId(entity.getId());
 
         mdc.update(newEntity);
-        
+
         MaterialDeClaseEntity resp = em.find(MaterialDeClaseEntity.class, entity.getId());
-        
+
         Assert.assertEquals(resp.getEnlaceMaterial(), newEntity.getEnlaceMaterial());
     }
-    
-     @Test
+
+    @Test
     public void deleteClaseTest() {
         MaterialDeClaseEntity entity = data.get(0);
         mdc.delete(entity.getId());
         MaterialDeClaseEntity deleted = em.find(MaterialDeClaseEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-        
+
 }

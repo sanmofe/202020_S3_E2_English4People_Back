@@ -79,6 +79,8 @@ public class ActividadPersistanceTest {
         Assert.assertEquals(actividad.getFecha(), entity.getFecha());
         Assert.assertEquals(actividad.getTipo(), entity.getTipo());
         Assert.assertEquals(actividad.getDescripcion(), entity.getDescripcion());
+        Assert.assertNull(actividad.getProfesor());
+        Assert.assertEquals(actividad.getEstudiantes().size(), entity.getEstudiantes().size());
     }    
     
      private void clearData() {
