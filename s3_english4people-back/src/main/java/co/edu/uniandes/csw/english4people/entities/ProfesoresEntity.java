@@ -205,12 +205,6 @@ public class ProfesoresEntity extends BaseEntity implements Serializable {
     private List<ActividadEntity> actividades = new ArrayList<ActividadEntity>();
     
     @PodamExclude
-    @OneToMany(
-            mappedBy= "profesor",
-            cascade = CascadeType.PERSIST,
-            fetch = FetchType.EAGER,
-            orphanRemoval = true
-    )
     private List<HorarioEntity> horariosDisponible =
             new ArrayList<HorarioEntity>();
     

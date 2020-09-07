@@ -37,20 +37,6 @@ public class HorarioEntity extends BaseEntity implements Serializable{
     public void setDiaSemana(DiaSemanaEntity diaSemana) {
         this.diaSemana = diaSemana;
     }
-
-    /**
-     * @return the profesor
-     */
-    public ProfesoresEntity getProfesor() {
-        return profesor;
-    }
-
-    /**
-     * @param profesor the profesor to set
-     */
-    public void setProfesor(ProfesoresEntity profesor) {
-        this.profesor = profesor;
-    }
     
      @Temporal(TemporalType.TIMESTAMP)
     private Date horaInicio;
@@ -60,10 +46,6 @@ public class HorarioEntity extends BaseEntity implements Serializable{
      
     @PodamExclude
     private DiaSemanaEntity diaSemana;
-
-    @PodamExclude
-    @ManyToOne
-    private ProfesoresEntity profesor;
     
      /**
       * 
