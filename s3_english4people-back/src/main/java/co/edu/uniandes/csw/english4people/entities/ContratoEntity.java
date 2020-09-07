@@ -9,9 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -20,6 +18,20 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class ContratoEntity extends BaseEntity implements Serializable{
+
+    /**
+     * @return the horarios
+     */
+    public List<HorarioEntity> getHorarios() {
+        return horarios;
+    }
+
+    /**
+     * @param horarios the horarios to set
+     */
+    public void setHorarios(List<HorarioEntity> horarios) {
+        this.horarios = horarios;
+    }
 
     /**
      * @return the profesor
@@ -53,14 +65,7 @@ public class ContratoEntity extends BaseEntity implements Serializable{
      * @return the horario
      */
     public List<HorarioEntity> getHorario() {
-        return horarios;
-    }
-
-    /**
-     * @param horario the horario to set
-     */
-    public void setHorario(List<HorarioEntity> horarios) {
-        this.horarios = horarios;
+        return getHorarios();
     }
     
     private Integer numeroHoras;
