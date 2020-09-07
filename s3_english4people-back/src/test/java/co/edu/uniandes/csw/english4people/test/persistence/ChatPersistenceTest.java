@@ -90,8 +90,9 @@ public class ChatPersistenceTest {
         Assert.assertNotNull(result);
         
         ChatEntity entity = em.find(ChatEntity.class, result.getId());
-       
-       
+        Assert.assertNull(chat.getProfesor());
+        Assert.assertNull(chat.getEstudiante());
+        Assert.assertEquals(chat.getMensajes().size(), entity.getMensajes().size());
     }
     
     @Test
