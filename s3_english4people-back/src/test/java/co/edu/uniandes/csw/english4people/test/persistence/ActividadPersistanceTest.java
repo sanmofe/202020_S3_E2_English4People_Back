@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.english4people.test.persistence;
 
 
 import co.edu.uniandes.csw.english4people.entities.ActividadEntity;
+import co.edu.uniandes.csw.english4people.entities.EstudianteEntity;
 import co.edu.uniandes.csw.english4people.persistence.ActividadPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +71,8 @@ public class ActividadPersistanceTest {
     {
         PodamFactory factory = new PodamFactoryImpl();
         ActividadEntity actividad = factory.manufacturePojo(ActividadEntity.class);
+        actividad.setProfesor(null);
+        actividad.setEstudiantes(new ArrayList<>());
         ActividadEntity result = ac.create(actividad);
         
         Assert.assertNotNull(result);

@@ -85,6 +85,14 @@ public class ProfesoresPersistanceTest {
     public void createTest() {
         PodamFactory factory = new PodamFactoryImpl();
         ProfesoresEntity profesor = factory.manufacturePojo(ProfesoresEntity.class);
+        profesor.setIdiomas(null);
+        profesor.setCertificados(new ArrayList<>());
+        profesor.setCalificaciones(new ArrayList<>());
+        profesor.setChats(new ArrayList<>());
+        profesor.setClases(new ArrayList<>());
+        profesor.setActividades(new ArrayList<>());
+        profesor.setHorariosDisponible(new ArrayList<>());
+        profesor.setContratos(new ArrayList<>());
         ProfesoresEntity result = pp.create(profesor);
         Assert.assertNotNull(result);
         ProfesoresEntity entity = em.find(ProfesoresEntity.class, result.getId());

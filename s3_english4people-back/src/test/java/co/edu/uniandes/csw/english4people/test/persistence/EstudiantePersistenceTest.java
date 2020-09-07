@@ -85,6 +85,10 @@ public class EstudiantePersistenceTest {
     public void createTest() {
         PodamFactory factory = new PodamFactoryImpl();
         EstudianteEntity estudiante = factory.manufacturePojo(EstudianteEntity.class);
+        estudiante.setChats(new ArrayList<>());
+        estudiante.setClases(new ArrayList<>());
+        estudiante.setActividades(new ArrayList<>());
+        estudiante.setContratos(new ArrayList<>());
         EstudianteEntity result = ep.create(estudiante);
 
         Assert.assertNotNull(result);

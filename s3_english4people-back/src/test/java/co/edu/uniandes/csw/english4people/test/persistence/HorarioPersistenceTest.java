@@ -108,6 +108,7 @@ public class HorarioPersistenceTest {
     public void createTest() {
         PodamFactory factory = new PodamFactoryImpl();
         HorarioEntity horario = factory.manufacturePojo(HorarioEntity.class);
+        horario.setDiaSemana(null);
         HorarioEntity result = hp.create(horario);
         Assert.assertNotNull(result);
 

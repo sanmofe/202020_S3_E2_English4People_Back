@@ -84,6 +84,7 @@ public class MensajePersistenceTest {
     public void createTest() {
         PodamFactory factory = new PodamFactoryImpl();
         MensajeEntity mensaje = factory.manufacturePojo(MensajeEntity.class);
+        mensaje.setChat(null);
         MensajeEntity result = mp.create(mensaje);
 
         Assert.assertNotNull(result);

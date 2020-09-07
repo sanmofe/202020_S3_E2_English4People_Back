@@ -85,6 +85,9 @@ public class ChatPersistenceTest {
     {
         PodamFactory factory = new PodamFactoryImpl();
         ChatEntity chat = factory.manufacturePojo(ChatEntity.class);
+        chat.setProfesor(null);
+        chat.setEstudiante(null);
+        chat.setMensajes(new ArrayList<>());
         ChatEntity result = cp.create(chat);
         
         Assert.assertNotNull(result);

@@ -68,6 +68,9 @@ public class ClasePersistanceTest {
     public void createTest() {
         PodamFactory factory = new PodamFactoryImpl();
         ClaseEntity clase = factory.manufacturePojo(ClaseEntity.class);
+        clase.setProfesor(null);
+        clase.setEstudiante(null);
+        clase.setIdioma(null);
         ClaseEntity result = cp.create(clase);
 
         Assert.assertNotNull(result);

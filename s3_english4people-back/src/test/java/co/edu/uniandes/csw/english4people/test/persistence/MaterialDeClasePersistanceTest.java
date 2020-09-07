@@ -68,6 +68,7 @@ public class MaterialDeClasePersistanceTest {
     public void createTest() {
         PodamFactory factory = new PodamFactoryImpl();
         MaterialDeClaseEntity material = factory.manufacturePojo(MaterialDeClaseEntity.class);
+        material.setClase(null);
         MaterialDeClaseEntity result = mdc.create(material);
         Assert.assertNotNull(result);
         MaterialDeClaseEntity entity = em.find(MaterialDeClaseEntity.class, result.getId());

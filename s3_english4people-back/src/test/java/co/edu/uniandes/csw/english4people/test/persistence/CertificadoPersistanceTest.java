@@ -87,6 +87,7 @@ public class CertificadoPersistanceTest {
     {
         PodamFactory factory = new PodamFactoryImpl();
         CertificadoEntity certificado = factory.manufacturePojo(CertificadoEntity.class);
+        certificado.setProfesor(null);
         CertificadoEntity result = cp.create(certificado);
         
         Assert.assertNotNull(result);

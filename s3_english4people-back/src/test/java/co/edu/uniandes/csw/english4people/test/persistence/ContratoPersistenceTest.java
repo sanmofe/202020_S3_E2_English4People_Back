@@ -110,6 +110,7 @@ public class ContratoPersistenceTest {
         ContratoEntity contrato = factory.manufacturePojo(ContratoEntity.class);
         contrato.setProfesor(null);
         contrato.setEstudiante(null);
+        contrato.setHorarios(new ArrayList<>());
         ContratoEntity result = cp.create(contrato);
         Assert.assertNotNull(result);
 

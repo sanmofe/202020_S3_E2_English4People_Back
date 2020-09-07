@@ -59,6 +59,8 @@ public class CalificacionPersistanceTest {
     public void createTest() {
         PodamFactory factory = new PodamFactoryImpl();
         CalificacionEntity calificacion = factory.manufacturePojo(CalificacionEntity.class);
+        calificacion.setRespuesta(null);
+        calificacion.setProfesor(null);
         CalificacionEntity result = cp.create(calificacion);
         Assert.assertNotNull(result);
         CalificacionEntity entity = em.find(CalificacionEntity.class, result.getId());
