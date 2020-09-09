@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.english4people.test.persistence;
 
 
 import co.edu.uniandes.csw.english4people.entities.CertificadoEntity;
+import co.edu.uniandes.csw.english4people.entities.ProfesoresEntity;
 import co.edu.uniandes.csw.english4people.persistence.CertificadoPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,8 @@ public class CertificadoPersistanceTest {
 
     private List<CertificadoEntity> data = new ArrayList<CertificadoEntity>();
     
+    private List<ProfesoresEntity> dataProfesores = new ArrayList<ProfesoresEntity>();
+    
     @Inject
     CertificadoPersistence cp;
     
@@ -68,14 +71,26 @@ public class CertificadoPersistanceTest {
     
     private void clearData() {
         em.createQuery("delete from CertificadoEntity").executeUpdate();
+        em.createQuery("delete from ProfesoresEntity").executeUpdate();
     }
 
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
 
-            CertificadoEntity entity = factory.manufacturePojo(CertificadoEntity.class);
+            ProfesoresEntity entity = factory.manufacturePojo(ProfesoresEntity.class);
 
+            em.persist(entity);
+
+            dataProfesores.add(entity);
+        }
+        
+        for (int i = 0; i < 3; i++) {
+
+            CertificadoEntity entity = factory.manufacturePojo(CertificadoEntity.class);
+            if(i==0){
+                entity.setProfesor(dataProfesores.get(0));
+            }
             em.persist(entity);
 
             data.add(entity);
@@ -117,7 +132,7 @@ public class CertificadoPersistanceTest {
     @Test
     public void getCertificadoTest() {
         CertificadoEntity entity = data.get(0);
-        CertificadoEntity newEntity = cp.find(entity.getId());
+        CertificadoEntity newEntity = cp.find(dataProfesores.get(0).getId(),entity.getId());
         Assert.assertNotNull(newEntity);
         
         Assert.assertEquals(entity.getNombre(), newEntity.getNombre());

@@ -36,7 +36,7 @@ public class CertificadoPersistence {
         return query.getResultList();
     }
     
-    public CertificadoEntity find(Long certificadoId)
+    public CertificadoEntity find(Long profesoresId, Long certificadoId)
     {
         return em.find(CertificadoEntity.class, certificadoId);
     }
